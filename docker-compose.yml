@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  spring-boot-service:
+    image: spring-boot-sample:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/efrei
+      - SPRING_DATASOURCE_USERNAME=efrei
+      - SPRING_DATASOURCE_PASSWORD=
+  database:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=efrei
+      - POSTGRES_USER=efrei
+      - POSTGRES_HOST_AUTH_METHOD=trust
